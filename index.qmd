@@ -1,0 +1,25 @@
+---
+title: "Census Data Plot"
+---
+
+This is a Quarto website.
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+
+```{r}
+#| echo: false
+#| message: false
+library(tidycensus)
+options(tigris_use_cache = TRUE)
+
+dc_income <- get_acs(
+  geography = "tract", 
+  variables = "B19013_001",
+  state = "DC", 
+  year = 2020,
+  geometry = TRUE
+)
+
+dc_income
+plot(dc_income["estimate"])
+```
